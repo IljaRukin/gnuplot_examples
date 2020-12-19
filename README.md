@@ -1,1 +1,2 @@
-"# gnuplot_examples" 
+# gnuplot_examples
+example plots in gnuplot 

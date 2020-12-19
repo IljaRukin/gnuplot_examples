@@ -1,0 +1,10 @@
+###generate data (stored in data.txt)
+
+set table 'data.txt'
+splot f(x)
+unset table
+
+###generate image
+
+set term pngcairo
+set output 'test.png'

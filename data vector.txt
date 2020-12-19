@@ -1,0 +1,52 @@
+
+###constants
+rg1=3
+rg2=2
+
+###plot range
+set xrange [0:rg1]
+set yrange [0:rg2]
+set zrange [0:rg1]
+
+###x/y axis at bottom
+set ticslevel 0
+
+###diargam apperance
+#unset key
+unset border
+
+###2d contour
+#set contour base
+#set surface
+
+###gridplot
+#set dgrid3d 30,30
+
+###labels
+set title "Plot von ..." font "sans, 20" 
+set xlabel "x-Achse" offset 0,0,0
+set ylabel "y-Achse" offset 0,0,0
+set zlabel "z-Achse" offset 0,0,0
+
+###equal x,y-axis lenght
+#set size square
+###equal x,y,z-axis lenght
+#set view equal xyz
+
+###different color palettes
+#set pal gray;
+#set palette rgb 3,11,6;
+#set palette defined (-1 "blue", 0 "white", 1 "red")
+#set palette defined (0 "white", 1 "red")
+set palette defined ( 0. "magenta", 1. "dark-blue", 2. "blue", 3. "cyan", 4. "green", 5. "yellow", 6. "orange", 7. "red", 8. "dark-red") maxcol 10
+
+###vectors
+splot "./dataexamplevector.txt" using ($1):($2):($3):($4):($5):($6) with vectors head size 0.08,20,60
+
+###vectors coloured by z-position
+#splot "./dataexamplevector.txt" using ($1):($2):($3):($4):($5):($6) with vectors head size 0.08,20,60 filled lc palette
+
+###vectors eith colour from additional coloumn
+#splot "./dataexamplevector.txt" using ($1):($2):($3):($4):($5):($6):($7) with vectors head size 0.08,20,60 filled lc palette
+
+

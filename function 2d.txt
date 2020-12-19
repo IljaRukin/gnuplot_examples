@@ -1,0 +1,57 @@
+
+#constants
+a=1
+N=200
+rg=4
+
+#functions
+f(x)=2*x
+g(x)=x**2
+h(x)=1
+i(x)=0
+
+
+###plot range
+set xrange [-rg:rg]
+set yrange [-rg:rg]
+
+###subdivions/details
+set samples N
+set isosamples N
+
+###x/y axis at y=0
+set ticslevel 0
+
+###diargam apperance
+#unset key
+unset border
+
+###dotted axis line at x/y=0
+set xzeroaxis
+set yzeroaxis
+
+###axis label position, tics size
+set xtics axis out scale 1,8 mirror norotate  autojustify
+set ytics axis in scale 1,0.5 mirror norotate  autojustify
+
+###labels
+set title "Plot von ..." font "sans, 20" 
+set xlabel "x-Achse" offset 0,0,0
+set ylabel "y-Achse" offset 0,0,0
+
+###equal axis lenght
+#set size square
+
+###dot & line apperance
+###line style number 1
+set style line 1 linecolor rgb '#0060ad' linetype 1 linewidth 2 pointtype 7 pointsize 1.5 pi -1
+###line style number 2
+set style line 2 linecolor rgb '#dd0016' linetype 0 linewidth 2 pointtype "?" pointsize 1.5 pi -1
+###line style number 3
+set style line 3 linecolor rgb '#00cc11' linetype 2 linewidth 2 pointtype "x" pointsize 1.5 pi -1
+
+plot sample [-rg:1] h(x) title "function 1" ls 1, [1:rg] i(x) notitle ls 1, \
+f(x) title "funtcion 2" ls 2, g(x) title "function 3" ls 3
+
+####or without plot intervals
+#plot  f(x) ls 2, g(x) ls 3

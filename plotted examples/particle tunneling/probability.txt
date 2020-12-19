@@ -1,0 +1,45 @@
+
+reset
+unset key
+
+
+#constants
+i = {0.0,1.0}
+m=9.1e-31
+a=0.5e-9
+V=1*1.6e-19
+E=0.95*1.6e-19
+hquer=(6.626e-34)/(2*pi)
+k=sqrt(2*m*E)/(hquer)
+q=sqrt(2*m*(E-V))/(hquer)
+lim=2.5e-9
+l = -(exp(4*i*q*a)*(q**2-k**2)-q**2+k**2)/(exp(4*i*q*a+2*i*k*a)*(q**2-2*k*q+k**2)+exp(2*i*k*a)*(-q**2-2*k*q-k**2))
+m = -(exp(i*q*a)*(2*k*q+2*k**2))/(exp(4*i*q*a+i*k*a)*(q**2-2*k*q+k**2)+exp(i*k*a)*(-q**2-2*k*q-k**2))
+n = -(exp(3*i*q*a)*(2*k*q-2*k**2))/(exp(4*i*q*a+i*k*a)*(q**2-2*k*q+k**2)+exp(i*k*a)*(-q**2-2*k*q-k**2))
+o = -(4*exp(2*i*q*a)*k*q)/(exp(4*i*q*a+2*i*k*a)*(q**2-2*k*q+k**2)+exp(2*i*k*a)*(-q**2-2*k*q-k**2))
+
+set title 'Potentialstufe'
+set xlabel 'Länge in m'
+set ylabel 'Aufenthaltswahrscheinlichkeit |Psi(x)|^2'
+
+#axis
+set xrange [-lim:lim] noreverse nowriteback
+#set yrange [-lim:lim]
+set samples 10000    # x-axis
+set isosamples 10000 # y-axis
+
+
+f(x) = (imag(exp(i*k*x) + l*exp(-i*k*x)))
+g(x) = (imag(m*exp(i*q*x) + n*exp(-i*q*x)))
+h(x) = (imag(o*exp(i*k*x)))
+
+i(x) = (real(exp(i*k*x) + l*exp(-i*k*x)))
+j(x) = (real(m*exp(i*q*x) + n*exp(-i*q*x)))
+k(x) = (real(o*exp(i*k*x)))
+
+q(x) = ((f(x))**2+(i(x))**2)
+r(x) = ((g(x))**2+(j(x))**2)
+s(x) = ((h(x))**2+(k(x))**2)
+
+
+plot sample [-lim:-a] q(x) lt rgb "red" , [-a:a] r(x) lt rgb "green" , [a:lim] s(x) lt rgb "blue"

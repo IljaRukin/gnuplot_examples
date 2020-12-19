@@ -1,0 +1,48 @@
+
+#constants
+N=10000
+
+#functions
+f(x)=sqrt(1-x**2)
+g(x)=sqrt(2-(x-1)**2)
+
+
+###plot range
+set xrange [-1:3]
+set yrange [-1:3]
+
+###subdivions/details
+set samples N
+set isosamples N
+
+###x/y axis at y=0
+set ticslevel 0
+
+###diargam apperance
+#unset key
+unset border
+
+###dotted axis line at x/y=0
+set xzeroaxis
+set yzeroaxis
+
+###axis label position, tics size
+set xtics axis out scale 1,8 mirror norotate  autojustify
+set ytics axis in scale 1,0.5 mirror norotate  autojustify
+
+###labels
+set title "Plot von z"
+set xlabel "reele Achse" offset 15,2,0
+set ylabel "imaginäre Achse" offset 5,5,0
+
+###equal axis lenght
+set size square
+
+###dot & line apperance
+###line style number 1
+set style line 1 linecolor rgb '#0060ad' linetype 1 linewidth 2 pointtype 7 pointsize 1.5 pi -1
+###line style number 2
+set style line 2 linecolor rgb '#dd0016' linetype 1 linewidth 2 pointtype 8 pointsize 1.5 pi -1
+
+plot f(x) title "|z|=1" with lines ls 1, -f(x) notitle with lines ls 1, \
+g(x)+1 title "|z-1-i|={/Symbol \326}2" with lines ls 2, -g(x)+1 notitle with lines ls 2

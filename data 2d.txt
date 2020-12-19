@@ -1,0 +1,53 @@
+
+#constants
+a=1
+N=200
+rg1=60
+rg2=140
+
+#functions
+f(x)=1.53**2*x/(5.67+x)**2*1000
+
+
+###plot range
+set xrange [0:rg1]
+set yrange [0:rg2]
+
+
+###x/y axis at y=0
+set ticslevel 0
+
+###diargam apperance
+#unset key
+unset border
+
+###dotted axis line at x/y=0
+set xzeroaxis
+set yzeroaxis
+
+###axis label position, tics size
+set xtics axis out scale 1,8 mirror norotate  autojustify
+set ytics axis in scale 1,0.5 mirror norotate  autojustify
+
+###labels
+set title "Plot von ..." font "sans, 20" 
+set xlabel "x-Achse" offset 0,0,0
+set ylabel "y-Achse" offset 0,0,0
+
+###equal axis lenght
+#set size square
+
+###dot & line apperance
+###style number 1
+set style line 1 linecolor rgb '#0060ad' linetype 1 linewidth 2 pointtype 7 pointsize 1.5 pi -1
+###style number 2
+set style line 2 lc rgb '#dd181f' linetype 0 linewidth 2 pointtype 2 pointsize 1.5 pi -1
+
+
+###big space between point and line
+#set pointintervalbox 3
+###for plotting with linespoints
+
+plot "./dataexample2d.txt" using ($1):($2*1000):($3):($4*1000) notitle with xyerrorbars ls 1, \
+"./dataexample2d.txt" using ($1):($2*1000) title "Experiment" w lines ls 1, \
+f(x) title "Theory" w lines ls 2

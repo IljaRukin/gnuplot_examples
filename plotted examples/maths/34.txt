@@ -1,0 +1,43 @@
+set polar
+set grid polar pi/8 linewidth 1
+set rtics 0.25
+
+#constants
+N=200
+rg=1.3
+
+###plot range
+set xrange [-rg:rg]
+set yrange [-rg:rg]
+
+
+###diargam apperance
+#unset key
+unset border
+
+###labels
+set title "Plot von z=1+i" font "sans, 20" 
+
+
+###equal axis lenght
+set size square
+
+###dot & line apperance
+###style number 1
+set style line 1 linecolor rgb '#0060ad' linetype 1 linewidth 2 pointtype 7 pointsize 1.5 pi -1
+###style number 2
+set style line 2 lc rgb '#dd181f' linetype 0 linewidth 2 pointtype 2 pointsize 1.5 pi -1
+
+
+###big space between point and line
+#set pointintervalbox 3
+
+plot "-" using ($2*pi):($1) notitle with points ls 1,
+
+#                 r                  phi
+1.0717734625362931642130063250233    0.05
+1.0717734625362931642130063250233    0.45
+1.0717734625362931642130063250233    0.85
+1.0717734625362931642130063250233    1.25
+1.0717734625362931642130063250233    1.65
+end

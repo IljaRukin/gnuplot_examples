@@ -1,0 +1,52 @@
+
+#constants
+a_0=0.529177e-10
+N=10000
+rg=4
+
+#functions
+f1(x)=x**2*(1/(a_0**(3/2))*(1/4-(3*x)/(16*a_0)+(x**2)/(32*a_0**2)-(x**3)/(768*a_0**3))*exp(-x/(4*a_0)))**2
+f2(x)=x**2*(sqrt(5/(3*(a_0)**3))*(x/(16*a_0)-(x**2)/(64*(a_0)**2)+(x**3)/(1280*(a_0)**3))*exp(-x/(4*a_0)))**2
+f3(x)=x**2*(1/sqrt(5*a_0**3)*((x**2)/(64*(a_0)**2)-(x**3)/(768*(a_0)**3))*exp(-x/(4*a_0)))**2
+f4(x)=x**2*(1/sqrt(315*(a_0)**3)*(x**3)/(256*(a_0)**3)*exp(-x/(4*a_0)))**2
+
+###plot range
+set xrange [0:50*a_0]
+set yrange [0:1.5e+9]
+
+###subdivions/details
+set samples N
+set isosamples N
+
+###x/y axis at y=0
+set ticslevel 0
+
+set xtics ("0" 0, "a_0" a_0, "10 a_0" 10*a_0, "20 a_0" 20*a_0, "30 a_0" 30*a_0, "40 a_0" 40*a_0, "50 a_0" 50*a_0)
+
+###diargam apperance
+#unset key
+unset border
+
+###dotted axis line at x/y=0
+set xzeroaxis
+set yzeroaxis
+
+###axis label position, tics size
+set xtics axis out scale 1,8 mirror norotate  autojustify
+set ytics axis in scale 1,0.5 mirror norotate  autojustify
+
+###labels
+set title "Wahrscheinlichkeit in Radialrichtung beim H-Atom"  font "sans, 15"
+set xlabel "Abstand in Bohrradien (0.53*10^{-10}m)"
+set ylabel "Wahrscheinlichkeitsdichte in 1/m^3"
+
+###equal axis lenght
+#set size square
+
+###dot & line apperance
+set style line 1 linecolor rgb '#ff0000' linetype 1 linewidth 2 pointtype 7 pointsize 1.5 pi -1
+set style line 2 linecolor rgb '#00ff00' linetype 1 linewidth 2 pointtype 7 pointsize 1.5 pi -1
+set style line 3 linecolor rgb '#0000ff' linetype 1 linewidth 2 pointtype 7 pointsize 1.5 pi -1
+set style line 4 linecolor rgb '#000000' linetype 1 linewidth 2 pointtype 7 pointsize 1.5 pi -1
+
+plot f1(x) title "n=4,l=0" ls 1, f2(x) title "n=4,l=1" ls 2, f3(x) title "n=4,l=2" ls 3, f4(x) title "n=4,l=3" ls 4

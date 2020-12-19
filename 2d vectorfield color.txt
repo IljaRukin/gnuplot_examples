@@ -1,0 +1,58 @@
+reset
+
+#source parameters#
+#scale factor
+sc = 0.5
+#max arrow length #restricted by distance to source of arrows
+lim = 0.9
+#color change rate : blue -> red (small number -> fast change)
+col = 0.1
+#offset (more red)
+off = +0.02
+#plot range
+rg = 2.5
+#samples per axis
+N = 20
+
+###labels
+set title "Plot von ..." font "sans, 20" 
+set xlabel "x-Achse" offset 0,0,0
+set ylabel "y-Achse" offset 0,0,0
+
+#border
+#set border 0
+#set style line 101 lc rgb '#808080' lt 1 lw 1
+#unset xlabel
+#unset ylabel
+#set format x ''
+#set format y ''
+#set tics scale 0
+
+
+#color
+# palette # grey -> rgb
+set palette defined ( 0 0 0 1, 0.5-col-off 0 0 1, 0.5+col-off 1 0 0, 1 1 0 0) #blue->red
+#set palette defined ( 0 0 0 1 , 1 0.5 0.5 1 ) # dark blue->light blue
+
+#arrows
+color_arrows = 'u ($1-dx($1,$2)/2.0):($2-dy($1,$2)/2.0):(dx($1,$2)):(dy($1,$2)):(v($1,$2)) with vectors head size 0.08,20,60 filled lc palette'
+# (x-start : y-start : x-length : y-length : color)
+# x = $1 ; y = $2
+
+unset key
+unset colorbox
+set xrange [-rg:rg]
+set yrange [-rg:rg]
+# get an equal grid
+set size ratio -1
+set samples N    # x-axis
+set isosamples N # y-axis
+
+# potential (color)
+v(x,y)     = 1/(sqrt(x**2+(y-1)**2)) - 1/(sqrt(x**2+(y+1)**2))
+
+#vector functions
+dx(x,y)    = (abs(x)+abs(y+1))>lim && (abs(x)+abs(y-1))>lim ? sc*x/(sqrt(x**2 + (y-1)**2)**3)-sc*x/(sqrt(x**2 + (y+1)**2)**3)  : (abs(x)+abs(y+1))<lim && (abs(x)+abs(y-1))<lim ? 0 : 0
+dy(x,y)    = (abs(x)+abs(y+1))>lim && (abs(x)+abs(y-1))>lim ? sc*(y-1)/(sqrt(x**2 + (y-1)**2)**3)-sc*(y+1)/(sqrt(x**2 + (y+1)**2)**3)  : (abs(x)+abs(y+1))<lim && (abs(x)+abs(y-1))<lim ? 0 : 0
+
+plot '++' @color_arrows

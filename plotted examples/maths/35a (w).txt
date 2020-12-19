@@ -1,0 +1,57 @@
+set parametric
+
+#constants
+a=1
+N=200
+
+#functions
+
+
+###plot range
+set xrange [-5:11]
+set yrange [-3:15]
+set trange [0:2]
+
+
+###x/y axis at y=0
+set ticslevel 0
+
+###diargam apperance
+#unset key
+unset border
+
+###dotted axis line at x/y=0
+set xzeroaxis
+set yzeroaxis
+
+###axis label position, tics size
+set xtics axis out scale 1,8 mirror norotate  autojustify
+set ytics axis in scale 1,0.5 mirror norotate  autojustify
+
+###labels
+set title "Plot von w=z^2+2z+1"  font "sans, 20" 
+set xlabel "reele Achse" offset 20,1,0
+set ylabel "imaginäre Achse" offset 10,5,0
+
+###equal axis lenght
+set size square
+
+###dot & line apperance
+###style number 1
+set style line 1 linecolor rgb '#0060ad' linetype 1 linewidth 2 pointtype 7 pointsize 1.5 pi -1
+###style number 2
+set style line 2 lc rgb '#dd181f' linetype 0 linewidth 2 pointtype 2 pointsize 1.5 pi -1
+
+
+###big space between point and line
+#set pointintervalbox 3
+
+plot t**2+2*t+1,0 notitle with lines ls 1, 9-t**2,6*t notitle with lines ls 1, \
+ t**2+2*t-3,4*t+4 notitle with lines ls 1, 1-t**2,2*t notitle with lines ls 1, \
+"-" using ($1):($2) notitle with points ls 1
+#  x      iy
+1    0
+9    0
+5    12
+-3   4
+end

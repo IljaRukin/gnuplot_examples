@@ -1,0 +1,48 @@
+
+#constants
+a_0=0.529177e-10
+N=10000
+rg=4
+
+#functions
+f(x)=x**2*(exp(-x/(a_0)))**2*1/(3.704613357391706*10**(-32))
+
+
+###plot range
+set xrange [0:50*a_0]
+set yrange [0:1.5e+10]
+
+###subdivions/details
+set samples N
+set isosamples N
+
+###x/y axis at y=0
+set ticslevel 0
+
+set xtics ("0" 0, "a_0" a_0, "10 a_0" 10*a_0, "20 a_0" 20*a_0, "30 a_0" 30*a_0, "40 a_0" 40*a_0, "50 a_0" 50*a_0)
+
+###diargam apperance
+#unset key
+unset border
+
+###dotted axis line at x/y=0
+set xzeroaxis
+set yzeroaxis
+
+###axis label position, tics size
+set xtics axis out scale 1,8 mirror norotate  autojustify
+set ytics axis in scale 1,0.5 mirror norotate  autojustify
+
+###labels
+set title "Wahrscheinlichkeit in Radialrichtung beim H-Atom"  font "sans, 15"
+set xlabel "Abstand in Bohrradien (0.53*10^{-10}m)"
+set ylabel "Wahrscheinlichkeitsdichte in 1/m^3"
+
+###equal axis lenght
+#set size square
+
+###dot & line apperance
+###line style number 1
+set style line 1 linecolor rgb '#0060ad' linetype 1 linewidth 2 pointtype 7 pointsize 1.5 pi -1
+
+plot f(x) title "Grundzustand" ls 1

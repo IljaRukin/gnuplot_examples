@@ -1,0 +1,52 @@
+#constants
+N=200
+
+#functions
+
+
+###plot range
+set xrange [-1:3]
+set yrange [-1:3]
+
+
+###x/y axis at y=0
+set ticslevel 0
+
+###diargam apperance
+#unset key
+unset border
+
+###dotted axis line at x/y=0
+set xzeroaxis
+set yzeroaxis
+
+###axis label position, tics size
+set xtics axis out scale 1,8 mirror norotate  autojustify
+set ytics axis in scale 1,0.5 mirror norotate  autojustify
+
+###labels
+set title "Plot von z"  font "sans, 20" 
+set xlabel "reele Achse" offset 20,2,0
+set ylabel "imaginäre Achse" offset 6,5,0
+
+###equal axis lenght
+set size square
+
+###dot & line apperance
+###style number 1
+set style line 1 linecolor rgb '#0060ad' linetype 1 linewidth 2 pointtype 7 pointsize 1.5 pi -1
+###style number 2
+set style line 2 lc rgb '#dd181f' linetype 0 linewidth 2 pointtype 2 pointsize 1.5 pi -1
+
+
+###big space between point and line
+#set pointintervalbox 3
+
+plot "-" using ($1):($2) notitle with linespoints ls 1
+#  x      iy
+0    0
+0    2
+2    2
+2    0
+0    0
+end

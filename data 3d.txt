@@ -1,0 +1,50 @@
+
+###constants
+rg=2
+
+###functions
+f(x,y) = ( sin(x) + sin(y) ) / 2
+
+###plot range
+set xrange [-rg:rg]
+set yrange [-rg:rg]
+set zrange [-rg:rg]
+
+###x/y axis at bottom
+set ticslevel 0
+
+###diargam apperance
+#unset key
+unset border
+
+###2d contour
+#set contour base
+#set surface
+
+###gridplot
+#set dgrid3d 30,30
+
+###labels
+set title "Plot von ..." font "sans, 20" 
+set xlabel "x-Achse" offset 0,0,0
+set ylabel "y-Achse" offset 0,0,0
+set zlabel "z-Achse" offset 0,0,0
+
+###equal x,y-axis lenght
+#set size square
+###equal x,y,z-axis lenght
+#set view equal xyz
+
+###different color palettes
+#set pal gray;
+#set palette rgb 3,11,6;
+#set palette defined (-1 "blue", 0 "white", 1 "red")
+#set palette defined (0 "white", 1 "red")
+set palette defined ( 0. "magenta", 1. "dark-blue", 2. "blue", 3. "cyan", 4. "green", 5. "yellow", 6. "orange", 7. "red", 8. "dark-red") maxcol 10
+
+
+###3d data plot
+#splot "./dataexample3d.txt" using ($1-1.2):($2-1.5):($3) title "cosine wave" with points palette pointsize 1 pointtype 7
+
+###define color by a colomun ---> 4d plot possible
+splot "./dataexample3d.txt" using ($1-1.2):($2-1.5):($3):($1) title "cosine wave" with points palette pointsize 1 pointtype 7
